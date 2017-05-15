@@ -37,9 +37,11 @@ public class Automobile implements Serializable {
 	}
 	
 	// Getters
+	// generates the unique key for an Automobile object
 	public String createAutoKey() {
 		return make+model+year;
 	}
+	
 	public String getMake() {
 		return make;
 	}
@@ -47,8 +49,13 @@ public class Automobile implements Serializable {
 	public String getModel() {
 		return model;
 	}
-	 public int getYear() {
+	
+	public int getYear() {
 		 return year;
+	 }
+	
+	 public ArrayList<Option> getUserChoices() {
+		 return userChoices;
 	 }
 	
 	public OptionSet getOptionSet(int index) {		// GetOptionSet(by index value)
@@ -178,7 +185,9 @@ public class Automobile implements Serializable {
 		if (optionSets == null) {
 			return;
 		}
-
+		// delete its chosem option from userChoice list
+		deleteOptionChoice(optionSetName);
+		// delete the OptionSet from optionSets list
 		for(OptionSet opSet : optionSets) {
 			if(opSet.getName().equalsIgnoreCase(optionSetName)) {
 				optionSets.remove(opSet);
@@ -187,6 +196,23 @@ public class Automobile implements Serializable {
 		}	
 	}
 	
+	// Deletes teh related choice for the specific optionSet
+	public void deleteOptionChoice(String optionSetName) {
+		OptionSet willBeDeleted = new OptionSet(userChoices.size());
+
+		// find the OptionSet that is gonna be deleted
+		for (OptionSet optionSet : optionSets) {
+			if (optionSet != null && optionSet.getName().equalsIgnoreCase(optionSetName)) {
+				willBeDeleted = optionSet;
+			}
+		}
+		for (Option option : userChoices) {
+			if (option.equals(willBeDeleted.choice)) {
+				userChoices.remove(option);
+				return;
+			}
+		}
+	}
 	// Update
 	public void updateOptionSet(String name, String[] optionNames, int[] optionPrices) {
 		int index = findOptionSetIndexByName(name);

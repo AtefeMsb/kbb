@@ -5,14 +5,14 @@ Focus Wagon ZTW
 OPTION,Color
 10
 Fort Knox Gold Clearcoat Metallic,0
-Liquid Grey Clearcoat Metallic,0
+Liquid Grey Clearcoat Metallic,2300
 Infra-Red Clearcoat,0
-Grabber Green Clearcoat Metallic,0
+Grabber Green Clearcoat Metallic,300
 Sangria Red Clearcoat Metallic,0
 French Blue Clearcoat Metallic,0
-Twilight Blue Clearcoat Metallic,0
+Twilight Blue Clearcoat Metallic,1000
 CD Silver Clearcoat Metallic,0
-Pitch Black Clearcoat,0
+Pitch Black Clearcoat,2000
 Cloud 9 White Clearcoat,0
 OPTION,Transmission
 2
@@ -21,7 +21,7 @@ manual,-815
 OPTION,Brakes
 3
 standard,0
-ABS,400
+ABS,1400
 ABS with Advance Trac,1625
 OPTION,Side Impact Air Bags
 2

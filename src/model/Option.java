@@ -28,6 +28,19 @@ public class Option implements Serializable{
 		this.price = price;
 	}
 
+	@Override
+	public boolean equals(Object other) {
+	    if (!(other instanceof Option)) {
+	        return false;
+	    }
+
+	    Option that = (Option) other;
+
+	    // Custom equality check here.
+	    return this.name.equals(that.name)
+	        && this.price ==that.price;
+	}
+	
 	// getters
 	protected String getName() {
 		return name;

@@ -9,12 +9,13 @@ package model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class OptionSet implements Serializable{
 	
 	String name;
-	ArrayList<Option> options;
 	Option choice;			// the Option user picked in this OptionSet
+	ArrayList<Option> options;
 	
 	// Constructors
 	public OptionSet(int size) {
@@ -103,10 +104,13 @@ public class OptionSet implements Serializable{
 	}
 	
 	// Delete
-	protected void deleteOption(String name) {
+	protected void deleteOption(String optionName) {
 		for (Option option : options) {
-			if (option != null && option.getName().equalsIgnoreCase(name)) {
+			if (option != null && option.getName().equalsIgnoreCase(optionName)) {
+				// remove the option from ArrayList of Options
 				options.remove(option);
+				// clear the choice variable, if it was chosen
+				deleteOptionChoice(optionName);
 				return;
 			}
 		}		
@@ -123,11 +127,23 @@ public class OptionSet implements Serializable{
 		}
 		
 		// Pass 2 - delete
-		for (Option option : deleteCandidates) {
-			options.remove(option);
-		}		
+		for (Option deleteCandidate : deleteCandidates) {
+			// clear the choice variable, if it was chosen
+			deleteOptionChoice(deleteCandidate.getName());
+			// remove option with specific price from Options arraylist
+			options.remove(deleteCandidate);
+		}
+
+
 	}
 	
+	// clear the choice by optionName
+	protected void deleteOptionChoice(String optionName) {
+		if (choice.getName().equalsIgnoreCase(optionName)) {
+			choice = null;
+		}
+	}
+		
 	// Update
 	protected void updateOptionPrice(String name, int price) { // find by name
 		for (Option option : options) {
